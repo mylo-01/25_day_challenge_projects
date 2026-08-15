@@ -1,28 +1,31 @@
-# Imports
 import re
+
 # Constants
-# %%
-# If from km to miles, multiply, else divide
 MILES_TO_KILOMETERS = 1.609344
 
-KM_PATTERN = re.compile(r"(\d+)\s*km", re.IGNORECASE)
-MILES_PATTERN = re.compile(r"(\d+)\s*miles", re.IGNORECASE)
-
+# Updated regex to support decimals (e.g., "1.5 km")
+KM_PATTERN = re.compile(r"(\d+(?:\.\d+)?)\s*km", re.IGNORECASE)
+MILES_PATTERN = re.compile(r"(\d+(?:\.\d+)?)\s*miles?", re.IGNORECASE)
 
 print('Hello')
-distance = input('Enter the lenght \n(sufix with km for "kilometers" \n and miles for "miles"): ')
-# print(f'You entered: {distance}')
+distance = input('Enter the length \n(suffix with "km" for kilometers \nor "miles" for miles): ')
 
-# %%
-# Calculations.
-km_object = KM_PATTERN.search(distance)
-miles_object= MILES_PATTERN.search(distance)
+# Calculations
+km_match = KM_PATTERN.search(distance)
+miles_match = MILES_PATTERN.search(distance)
 
-if km_object:
-   output, unit = (float(km_object.group(1)) / MILES_TO_KILOMETERS), 'Miles'
-elif miles_object:
-    output, unit = (float(miles_object.group(1)) * MILES_TO_KILOMETERS), 'Kilometers'
+output = None
+unit = None
+
+if km_match:
+    output = float(km_match.group(1)) / MILES_TO_KILOMETERS
+    unit = 'Miles'
+elif miles_match:
+    output = float(miles_match.group(1)) * MILES_TO_KILOMETERS
+    unit = 'Kilometers'
+
+# Check against None to avoid the "0" bug
+if output is not None:
+    print(f'Your distance converted is:\n{output:.3f} {unit}')
 else:
-    output, unit = None, None
-
-print(f'Your distance converted is: \n {output:.3f} {unit}') if output else print('Wrong input, read instructions carefully')
+    print('Wrong input, read instructions carefully.')
