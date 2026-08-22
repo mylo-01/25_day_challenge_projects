@@ -1,3 +1,4 @@
+# %%
 from datetime import datetime
 
 
@@ -21,6 +22,8 @@ def response(text: str) -> str:
         return 'Talk to you later!'
     elif contains(['what time is it', 'current time'], text):
         return f'The time is: {datetime.now()}'
+    elif contains(['bot', 'robot', 'clanker'], text):
+        return 'Who said anything about a robot, we are just two pals talking here'
     else:
         return 'Sorry... I can\'t answer that right now.'
 

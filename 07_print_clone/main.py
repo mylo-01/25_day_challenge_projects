@@ -1,10 +1,14 @@
+# %%
 from typing import Any
+import random
 
 # 1. Hover over print to see the original signature
 def custom_print(*values: Any,
                  sep: str | None = " ",
                  end: str | None = "\n",
                  caps: bool = False,
+                 randomize: bool = False,
+                 print_counter: bool = False,
                  include_types: bool = False) -> None:
 
     # Uppercases all string values if flag is toggled
@@ -14,6 +18,9 @@ def custom_print(*values: Any,
             new_values.append(value.upper())
         else:
             new_values.append(value)
+
+    if randomize:
+        random.shuffle(new_values)
 
     # Includes type of every argument if flag is toggled
     values_with_type: list[Any] = []
@@ -25,15 +32,23 @@ def custom_print(*values: Any,
     else:
         print(*new_values, sep=sep, end=end)
 
+    if print_counter:
+        total_words = len(values)
+        print(f'And the total word count is: {total_words}')
+
 
 # 2. Have fun with custom printing!
 custom_print('Bob', 'James', 10, caps=False, include_types=False, sep=', ')
 custom_print('Bob', 'James', 10, caps=True, include_types=False, sep=', ', end='!\n')
 custom_print('Bob', 'James', 10, include_types=True, sep=', ', end='!\n')
+custom_print('Bob', 'James', 10, include_types=True, randomize=True, print_counter=True, sep=', ', end='!\n')
 custom_print([], include_types=True, sep=', ', end='!\n')
 
 
 # Homework:
 # 1. Add a field that counts the number of elements being printed.
 # 2. Add your very own feature to the custom print function.
-
+# %%
+my_list = [1, 2, 3]
+random.shuffle(my_list)
+print(my_list)

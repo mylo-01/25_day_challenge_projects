@@ -1,20 +1,27 @@
+# %%
 # 1. Get the user input for the total bill amount
 print('Welcome to Expense Splitter™!')
-total_bill: float = float(input('1. Enter the total bill you would like to split: '))
+total_bill = 1
+while not isinstance(total_bill, float):
+    try:
+        total_bill = float(input('How much was the total bill?'))
+    except ValueError:
+        print('total bill has to be a number')
 
 # 2. Add the participants to the bill
 people: list[str] = []
-print('2. Add participants (press Enter on an empty line when finished):')
-while True:
-    input_name: str = input('Name: ').lower()
-    if input_name.strip() == '':
-        break
+while len(people) == 0:
+    print('2. Add participants (press Enter on an empty line when finished):')
+    while True:
+        input_name: str = input('Name: ').lower()
+        if input_name.strip() == '':
+            break
 
-    # Check for duplicate names
-    if input_name in people:
-        print('That name is already listed. Please add a different name.')
-    else:
-        people.append(input_name)
+        # Check for duplicate names
+        if input_name in people:
+            print('That name is already listed. Please add a different name.')
+        else:
+            people.append(input_name)
 
 # 3. Splitting the bill
 print('3. Now, specify the percentage each person will pay.')
@@ -25,6 +32,7 @@ people_dict: dict[str, float] = {}
 total_percent: float = 100.0
 
 # Get inputs for each person
+
 for person in people:
     percent_input: str = input(f'[{total_percent:.0f}% remaining] {person.capitalize()}: ').lower()
 
@@ -40,6 +48,12 @@ for person in people:
 
     people_dict[person] = (float(percent_input) / 100) * total_bill
     total_percent -= float(percent_input)
+    if total_percent == 0:
+        print('we are done here')
+        break
+    elif total_percent < 0:
+        print('you my guy are pretty trash at math')
+        raise ValueError
 
 # 4. Display the information
 print('\n--- Split Summary ---')
