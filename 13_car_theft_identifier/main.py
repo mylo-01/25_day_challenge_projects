@@ -1,4 +1,9 @@
+from typing import final
+from collections import Counter
+# %%
 # 1. Create the concept of a car in this world
+
+@final
 class Car:
     def __init__(self, licence_plate: str) -> None:
         if len(licence_plate) != 6:
@@ -20,6 +25,15 @@ class StolenCarRegistry:
     def is_stolen(self, plate: str) -> bool:
         return plate.upper() in self.stolen_plates
 
+    def remove_plate(self, plate: str) -> None:
+        self.stolen_plates.remove(plate) if plate in self.stolen_plates else print(f'plate : {plate} not found')
+
+    def display_plates(self) -> None:
+        print('-' * 10)
+        for plate in self.stolen_plates:
+            print(f'--{plate}--')
+        print('-' * 10)
+        print(f'Total stolen plates: {len(self.stolen_plates)}')
 
 # 3. Check for stolen cars
 def main() -> None:
@@ -30,11 +44,18 @@ def main() -> None:
     print('Welcome to Car Theft Identifier')
     while True:
         plate: str = input('Enter car licence plate: ').strip()
+        process: str = input('What do you want to do? (display or remove)').lower().strip()
         car: Car = Car(plate)
-        if registry.is_stolen(car.licence_plate):
-            print(f'❌ Car with plate "{car.licence_plate}" is: REPORTED STOLEN!')
+        if process:
+            if process == 'display':
+                registry.display_plates()
+            elif process == 'remove':
+                registry.remove_plate(plate)
         else:
-            print(f'✅ Car with plate "{car.licence_plate}" is: OK')
+            if registry.is_stolen(car.licence_plate):
+                print(f'❌ Car with plate "{car.licence_plate}" is: REPORTED STOLEN!')
+            else:
+                print(f'✅ Car with plate "{car.licence_plate}" is: OK')
 
 
 if __name__ == '__main__':

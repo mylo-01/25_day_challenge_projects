@@ -1,3 +1,4 @@
+# %%
 # 1. Create a way to store the data
 db: dict[str, int] = dict()
 
@@ -10,13 +11,14 @@ def announcement(msg: str) -> None:
 # 3. Create the core functionality
 def add_item() -> None:
     name: str = input('Enter an item: ').lower().strip()
-
-    try:
-        quantity: int = int(input('Enter a quantity: '))
-        db[name] = quantity
-        announcement(f'Added "{name}" x {quantity}')
-    except ValueError:
-        announcement('Error, please enter a valid number.')
+    while True:
+        try:
+            quantity: int = int(input('Enter a quantity: '))
+            db[name] = quantity
+            announcement(f'Added "{name}" x {quantity}')
+            break
+        except ValueError:
+            announcement('Error, please enter a valid number.')
 
 
 def remove_item() -> None:
@@ -38,6 +40,18 @@ def read_list() -> None:
     else:
         announcement('There are no groceries to display.')
 
+def edit_item_quantity() -> None:
+    read_list()
+    item = input('Which item would you like to edit?').lower().strip()
+    if item not in db.keys():
+        print('This item has not yet been added')
+        return
+    while True:
+        try:
+            db[item] = int(input('What would be the new quantity'))
+            return
+        except ValueError:
+            print('quantity must be an int')
 
 # 4. Create a menu for the user
 def display_options() -> None:
@@ -46,6 +60,7 @@ def display_options() -> None:
     print('1 - Read list')
     print('2 - Add to list')
     print('3 - Remove from list')
+    print('4 - Edit an item within the list')
     print('_')
 
 
@@ -65,14 +80,19 @@ def get_option(option: str) -> None:
         add_item()
     elif converted == 3:
         remove_item()
+    elif converted == 4:
+        edit_item_quantity()
 
 
 # 6. Start and loop the program
 def main() -> None:
     display_options()
     while True:
-        user_input: str = input('You: ')
+        user_input: str = input('You: ').lower().strip()
+        if user_input == 'q':
+            return
         get_option(user_input)
+
 
 
 if __name__ == '__main__':
