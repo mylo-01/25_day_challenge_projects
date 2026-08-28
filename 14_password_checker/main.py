@@ -14,27 +14,52 @@ class PasswordValidator:
     def is_common(self, password: str) -> bool:
         return password in self.common_passwords
 
-    def rate(self, password: str) -> str:
+    @staticmethod
+    def char_rep(password:str  ) -> bool:
+        last_char:str|None = None
+        for char in password:
+            if last_char is not None:
+                if last_char[-1] == char:
+                    last_char = last_char+char
+                    if len(last_char) == 3:
+                        return True
+                else:
+                    last_char = char
+            else:
+               last_char = char
+        return False
+
+    def rate(self, password: str) -> tuple[dict[str, bool], bool]:
+        ref_dict = {
+            'upper' : False,
+            'punctuation' : False,
+            'length' : False,
+            'numbers' : False
+        }
+        repetition_flag: bool = False
+
         if self.is_common(password):
-            return 'poor'
+            return ref_dict, repetition_flag
+
 
         # Calculate score
-        score: int = 0
+        # score: int = 0
         if any(c.isupper() for c in password):  # Checks for uppercase characters
-            score += 1
+            ref_dict['upper'] = True
+
         if any(c in string.punctuation for c in password):  # Checks for punctuation
-            score += 1
+            ref_dict['punctuation'] = True
+
         if len(password) >= 10:  # Checks length
-            score += 1
+            ref_dict['length'] = True
 
+        if any(c.isdigit() for c in password):
+            ref_dict['numbers'] = True
+
+        if self.char_rep(password):
+            repetition_flag = True
         # Return rating
-        if score == 3:
-            return 'secure'
-        elif score == 2:
-            return 'medium'
-        else:
-            return 'poor'
-
+        return ref_dict, repetition_flag
 
 # 2. Check for password
 def main() -> None:
@@ -45,14 +70,19 @@ def main() -> None:
 
     while True:
         password: str = input('Enter password: ').strip()
-        rating: str = validator.rate(password)
-        if rating == 'secure':
+        score, rep_flag = validator.rate(password)
+        rating = sum(value for key, value in score.items())
+        if rating == 4:
             print('✅ Your password is secure! ')
-        elif rating == 'medium':
+        elif rating <= 3:
             print('⚠️ Your password is of medium strength.')
-        else:
-            print('⚠️ That password sucks!')
-            print('Try adding symbols, uppercase letters, and increasing the length.')
+            if rating == 0:
+                print('⚠️ That password sucks!')
+                print('Try adding symbols, uppercase letters, and increasing the length.')
+            print('Your are missing:')
+            print(f'{[key for key, value in score.items() if not value]}')
+        if rep_flag:
+            print('Also, too many repeating chars, you should probably fix that')
 
 
 if __name__ == '__main__':
