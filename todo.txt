@@ -1,2 +1,9 @@
-(A) 2026-08-24 make the convert function so it returns a dict
-(A) 2026-08-24 make it so that dict is displayed in another function
+(S) 19_text_analyser/main.py - Contar signos de puntuación
+(S) 19_text_analyser/main.py - Calcular la longitud promedio de las palabras
+(T) 20_lucky_lemons/main.py - Otorgar créditos por dos símbolos iguales en los primeros dos slots
+(T) 20_lucky_lemons/main.py - Agregar un cuarto símbolo al juego
+(U) 21_folder_analyser/main.py - Dividir analyse_folder() en funciones más pequeñas
+(V) 22_chatbot3/main.py - Agregar más respuestas al chatbot
+(V) 22_chatbot3/main.py - Convertir el código a un enfoque orientado a objetos
+(W) 23_website_status_asyncio/main.py - Agregar tiempo de respuesta para cada sitio web
+(W) 23_website_status_asyncio/main.py - Mostrar qué sitio tardó demasiado en responder

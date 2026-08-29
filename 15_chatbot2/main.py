@@ -41,6 +41,8 @@ class ChatBot:
                 'I understand: hello/hi, goodbye/bye, what time is it/current time, '
                 'weather, tomorrow (after weather), and help/commands.'
             )
+        elif contains(['fuck', 'shit'], text):
+            return('Fuck you too, u silly goose')
 
         return "Sorry... I can't answer that right now."
 

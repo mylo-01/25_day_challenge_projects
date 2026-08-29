@@ -33,8 +33,11 @@ def generate_activities(activities: list[Activity]) -> None:
     try:
         people: int = int(input('How many people are you? '))
         cost: int = int(input('How much are you willing to spend per person ($)? '))
+        my_type: str = input('Do you wish to take part of an indoor outdoor or entertainment activity?')
+        if my_type not in ('indoor', 'outdoor', 'entertainment'):
+            raise ValueError
     except ValueError:
-        print('Error: Please only enter numerical values.')
+        print('Error: Please only enter valid input')
         return
 
     # Gather the activities that meet the criteria and display them
@@ -42,8 +45,9 @@ def generate_activities(activities: list[Activity]) -> None:
     for activity in activities:
         activity_cost: int = activity.cost
         activity_people: int = activity.people
+        activity_type: str = activity.activity_type
 
-        if activity_cost <= cost and activity_people <= people:
+        if activity_cost <= cost and activity_people <= people and activity_type == my_type:
             matched_activities.append(activity)
 
     if matched_activities:

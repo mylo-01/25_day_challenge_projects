@@ -34,5 +34,11 @@
     "type": "indoor",
     "cost": 25,
     "people": 2
+  },
+  {
+    "activity": "Play basketball",
+    "type": "outdoor",
+    "cost": 5,
+    "people": 5
   }
 ]

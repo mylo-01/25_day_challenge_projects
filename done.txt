@@ -1,0 +1,30 @@
+x 2026-08-28 2026-08-28 01_temperature_converter/homework.py - Implementar conversor km ↔ millas con regex y manejo del bug del "0"
+x 2026-08-28 2026-08-28 01_temperature_converter/main.py - Crear conversor de millas a kilómetros y viceversa
+x 2026-08-28 2026-08-28 01_temperature_converter/main.py - Mostrar el resultado formateado en consola usando f-strings
+x 2026-08-28 2026-08-28 02_tax_calculator/main.py - Agregar proyecciones de impuestos si se duplica o triplica el ingreso
+x 2026-08-28 2026-08-28 03_mad_libs/main.py - Crear tu propia historia y practicar la captura de entrada del usuario
+x 2026-08-28 2026-08-28 04_rock_paper_scissors/main.py - Hacer que el juego se repita indefinidamente sin volver a ejecutar el script
+x 2026-08-28 2026-08-28 05_expense_splitter/main.py - Manejar qué ocurre si el usuario presiona Enter sin especificar el monto total
+x 2026-08-28 2026-08-28 05_expense_splitter/main.py - Manejar qué ocurre si el usuario no agrega personas a la cuenta
+x 2026-08-28 2026-08-28 05_expense_splitter/main.py - Hacer que el usuario solo pueda cobrar hasta el 100% de la cuenta
+x 2026-08-28 2026-08-28 06_chatbot1/main.py - Agregar respuestas personalizadas al bot
+x 2026-08-28 2026-08-28 07_print_clone/main.py - Agregar un campo que cuente el número de elementos que se imprimen
+x 2026-08-28 2026-08-28 07_print_clone/main.py - Agregar una característica propia a la función custom_print
+x 2026-08-28 2026-08-28 08_guess_that_number/main.py - Agregar sistema de puntuación con cantidad de intentos
+x 2026-08-28 2026-08-28 09_website_status/main.py - Dividir check_website() en obtener datos y display_website(data)
+x 2026-08-28 2026-08-28 10_currency_converter/main.py - Hacer que convert() devuelva un diccionario con todas las conversiones
+x 2026-08-28 2026-08-28 10_currency_converter/main.py - Crear función que muestre el diccionario de conversiones
+x 2026-08-28 2026-08-28 11_grocery_list/main.py - Permitir reintentar cantidad inválida sin volver a pedir el nombre
+x 2026-08-28 2026-08-28 11_grocery_list/main.py - Agregar opción para modificar la cantidad de cualquier artículo
+x 2026-08-28 2026-08-28 12_car_factory/main.py - Agregar función para vender autos verificando stock
+x 2026-08-28 2026-08-28 12_car_factory/main.py - Crear un banco para almacenar dinero de ventas
+x 2026-08-28 2026-08-28 13_car_theft_identifier/main.py - Agregar forma de eliminar autos robados del registro
+x 2026-08-28 2026-08-28 13_car_theft_identifier/main.py - Agregar contador del total de autos robados
+x 2026-08-28 2026-08-28 13_car_theft_identifier/main.py - Agregar funcionalidad para mostrar todas las placas robadas
+x 2026-08-28 2026-08-28 14_password_checker/main.py - Indicar exactamente qué le falta a la contraseña
+x 2026-08-28 2026-08-28 14_password_checker/main.py - Detectar demasiados caracteres secuenciales como "aaa" o "111"
+x 2026-08-28 2026-08-28 14_password_checker/main.py - Verificar que la contraseña contenga dígitos para calificación segura
+x 2026-08-28 2026-08-28 15_chatbot2/main.py - Crear más respuestas que usen el historial del chat
+x 2026-08-28 2026-08-28 16_activity_generator/main.py - Agregar más actividades al script
+x 2026-08-28 2026-08-28 16_activity_generator/main.py - Crear opción para filtrar actividades indoor/outdoor
+x 2026-08-28 2026-08-28 18_email_finder/main.py - Filtrar dominios poco conocidos y conservar solo los populares

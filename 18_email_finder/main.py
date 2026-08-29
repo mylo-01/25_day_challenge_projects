@@ -1,8 +1,9 @@
 import re
+from collections import Counter
 
 
 def extract_emails(
-    text: str, unique_only: bool = True, case_sensitive: bool = True
+    text: str, unique_only: bool = True, case_sensitive: bool = True, top_domain_only: bool = False
 ) -> list[str]:
     # Comprehensive email regex pattern
     email_pattern: str = (
@@ -12,6 +13,12 @@ def extract_emails(
 
     # Find all email addresses
     emails: list[str] = re.findall(email_pattern, text)
+
+    if top_domain_only:
+        #me lo robé a la chingada todo de la ai
+        domain_counts = Counter(email.rsplit('@', 1)[-1] for email in emails)
+        top_3_domains = set(domain for domain, _ in domain_counts.most_common(3))
+        emails = [email for email in emails if email.rsplit('@', 1)[-1] in top_3_domains]
 
     if not case_sensitive:
         emails = [email.lower() for email in emails]
